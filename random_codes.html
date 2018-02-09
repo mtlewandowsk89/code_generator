@@ -6,493 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Promocode Generator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Mukta+Malar:400" rel="stylesheet">
 </head>
 <body>
-    <style>
-
-        .container {
-            position: relative;
-            box-shadow: rgba(0, 0, 0, 0.5) -2px 6px 5px;
-            background-color: #aeaeae;
-            border-left: 1px solid #000;
-            border-right: 1px solid #000;
-            border-bottom: 1px solid #000;
-        }
-
-        .title {
-            font-family: 'Righteous', cursive;
-            display: inline;
-            margin-left: 10px;
-        }
-
-        label, button, #codeCount, #dupeCount, #naughtyCount {
-            font-family: 'Mukta Malar', sans-serif;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        .gear {
-            position: absolute;
-            top: 15px;
-            right: -26px;
-            width: 140px;
-            height: 140px;
-            border: 20px solid #645533;
-            border-radius: 50%;
-            z-index: -1;
-        }
-  
-        .gear:before {
-            content: '';
-            display: block;
-            position: absolute;
-            top:40px;
-            right: -35px;
-            width: 20px;
-            height: 20px;
-            background-color: #645533;
-        }
-  
-        .gear:after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: -35px;
-            right: 40px;
-            width: 20px;
-            height: 20px;
-            background-color: #645533;
-        }
-  
-        .gear-teeth {
-            width: 20px;
-            height: 20px;
-            position: absolute;
-            background-color: #645533;
-            -ms-transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
-        .tooth1 {
-            top: 94px;
-            right: -12px;
-        }
-
-        .tooth2 {
-            top: 94px;
-            right: 94px;
-        }
-
-        .tooth3 {
-            top: -14px;
-            right: 94px;
-        }
-
-        .tooth4 {
-            background-color: #645533;
-            top: -15px;
-            right: -12px;
-        }
-
-        .tooth5 {
-            position: absolute;
-            top: 115px;
-            right: 40px;
-            width: 20px;
-            height: 20px;
-            background-color: #645533;
-        }
-
-        .tooth6 {
-            position: absolute;
-            top:40px;
-            right: 115px;
-            width: 20px;
-            height: 20px;
-            background-color: #645533;
-        }
-
-        .gear2 {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            left: -12px;
-            top: 175px;
-            z-index: -1;
-            border: 20px solid #645533;
-            border-radius: 50%;
-            animation-fill-mode: forwards;
-        }
-  
-        .gear2:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: 17px;
-            left: 17px;
-        }
-  
-        .gear2:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: -17px;
-            left: 17px;
-        }
-  
-        .gear2-teeth {
-            position: absolute;
-            background-color: #645533;
-            height: 10px;
-            width: 10px;
-        }
-
-
-        .spike1 {
-            top: -17px;
-            left: -17px;
-        }
-  
-        .spike1:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: -7px;
-            left: 17px;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-  
-        .spike1:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: 41px;
-            left: 17px;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
-
-        .spike2 {
-            top: 17px;
-            left: -17px;
-        }
-  
-        .spike2:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: -17px;
-            left: 41px;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-  
-        .spike2:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #645533;
-            top: -17px;
-            left: -7px;
-            -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
-        .btn-success {
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #28a745 0 2px 12px;
-        }
-
-        .btn-danger {
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, #dc3645 0 2px 12px;
-        }
-
-        .btn-info {
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #115966 0 -1px 9px, #18a1b8 0 2px 12px;
-        }
-
-        .led-green {
-            position: relative;
-            margin: 20px 0 0 10px;
-            width: 24px;
-            height: 24px;
-            background-color: #ABFF00;
-            border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
-        }
-
-        .led-green:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 6px;
-            height: 4px;
-            border-radius: 50%;
-            right: 6px;
-            top: 6px;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            background-color: #fff;
-        }
-
-        .led-red {
-            position: relative;
-            margin: 20px 0 0 10px;
-            width: 24px;
-            height: 24px;
-            background-color: #F00;
-            border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
-        }
-
-        .led-red:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 6px;
-            height: 4px;
-            border-radius: 50%;
-            right: 6px;
-            top: 6px;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            background-color: #fff;
-        }
-
-        .led-yellow {
-            position: relative;
-            margin: 20px 0 0 10px;
-            width: 24px;
-            height: 24px;
-            background-color: #FF0;
-            border-radius: 50%;
-            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
-        }
-
-        .led-yellow:before {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 6px;
-            height: 4px;
-            border-radius: 50%;
-            right: 6px;
-            top: 6px;
-            transform: rotate(45deg);
-            -webkit-transform: rotate(45deg);
-            background-color: #fff;
-        }
-
-        .spin {
-            -webkit-animation:spin 1s infinite linear;
-            -moz-animation:spin 1s infinite linear;
-            animation:spin 1s infinite linear;
-            animation-fill-mode: forwards;
-        }
-
-        @-moz-keyframes spin { 100% { -moz-transform: rotate(90deg); } }
-        @-webkit-keyframes spin { 100% { -webkit-transform: rotate(90deg); } }
-        @keyframes spin { 100% { -webkit-transform: rotate(90deg); transform:rotate(90deg); } }
-
-    </style>
-    <script>
-        chars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-        codes = [];
-        naughtyWords = ['fuck', 'shit', 'bitch', 'damn', 'ass', 'hell', 'cunt', 'cum', 'tit', 'fat', 'fag', 'chub', 'dick', 'cock', 'slut', 'pee', 'poo', 'ugly', 'gay', 'anus', 'piss', 'butt', 'lard', 'ahole', 'anal', 'bltch', 'babe', 'balls', 'bang', 'barf', 'beer', 'beotch', 'bimbo', 'blow', 'boink', 'bone', 'boob', 'booty', 'booze', 'bung', 'c0ck', 'caca', 'chode', 'clit', 'coon', 'crap', 'dike', 'dildo', 'dong', 'dyke', 'erect', 'fart', 'felch', 'gook', 'gspot', 'gtfo', 'homo', 'jap', 'jiz', 'kike', 'lez', 'lube', 'meth', 'mofo', 'nad', 'nazi', 'oral', 'ovum', 'pedo', 'pimp', 'poon', 'puss', 'rape', 'scum', 'sex', 'spic', 'sperm', 'stfu', 'tard', 'suck', 'toke', 'turd', 'twat', 'vag', 'hag'];
-        dupes = 0;
-        naughtyCount = 0;
-        tooManyBadWords = false;
-
-        function spin(canContinue) {
-            let gear = document.getElementById('gear'),
-            gear2 = document.getElementById('gear2');
-            if (canContinue) {
-                gear.classList.add('spin');
-                gear2.classList.add('spin');
-                setTimeout(function() {
-                    randomize();
-                }, 500);
-            } else {
-                gear.classList.remove('spin');
-                gear2.classList.remove('spin');
-            }
-        }
-        
-        function randomize() {
-            let gear = document.getElementById('gear'),
-            gear2 = document.getElementById('gear2'),
-            numCodes = document.getElementById('codeNumber').value,
-            countStatus = document.getElementById('countStatus'),
-            dupeStatus = document.getElementById('dupeStatus'),
-            naughtyStatus = document.getElementById('naughtyStatus'),
-            intNumCodes = parseInt(numCodes),
-            tooManyDupes = false;
-            if (intNumCodes > 0) {
-                for (let j = 0; j < intNumCodes; j++) {
-                    completeCode = addNewCode();
-                    if (completeCode !== null) {
-                        codes.push(completeCode.toUpperCase());
-                    }
-                }
-                let sortedCodes = codes.slice().sort();
-                sortedCodes.map((c, s) => {
-                    if (sortedCodes[s + 1] == sortedCodes[s] && sortedCodes[s + 2] == sortedCodes[s] && sortedCodes[s + 3] == sortedCodes[s]) {
-                         tooManyDupes = true;
-                     } else if (sortedCodes[s + 1] == sortedCodes[s] && sortedCodes[s + 2] == sortedCodes[s]) {
-                         sortedCodes.splice(s, 2);
-                         dupes++;
-                     } else if (sortedCodes[s + 1] == sortedCodes[s]) {
-                         sortedCodes.splice(s, 1);
-                         dupes++;
-                     }
-                })
-                if (tooManyBadWords) {
-                    gear.classList.remove('spin');
-                    gear2.classList.remove('spin');
-                    document.getElementById('codeCount').innerHTML = 'At least 1 banned word was generated even after shuffling each letter around three times. Cut your losses and try again.'
-                    countStatus.classList.add('led-red');
-                } else if (tooManyDupes) {
-                    gear.classList.remove('spin');
-                    gear2.classList.remove('spin');
-                    document.getElementById('codeCount').innerHTML = 'More than 3 of the same code generated. Consider decreasing the amount of codes or increasing the characters in each code.'
-                    countStatus.classList.add('led-red');
-                } else {
-                    document.getElementById('codeCount').innerHTML = 'Successfully generated ' + sortedCodes.length + ' codes!';
-                    document.getElementById('dupeCount').innerHTML = dupes + ' duplicate(s) found and removed.';
-                    document.getElementById('naughtyCount').innerHTML = naughtyCount + ' banned words found and sanitized.';
-                    if (dupes > 0) {
-                        dupeStatus.classList.add('led-yellow');
-                        countStatus.classList.add('led-yellow');
-                    } else {
-                        dupeStatus.classList.add('led-green');
-                        countStatus.classList.add('led-green');
-                    }
-                    if (naughtyCount > 0) {
-                        naughtyStatus.classList.add('led-yellow');
-                    } else {
-                        naughtyStatus.classList.add('led-green');
-                    }
-                    let codeBox = document.getElementById('codeBox');
-                    let prefix = document.getElementById('codePrefix').value;
-                    if (prefix) {
-                        sortedCodes = sortedCodes.map(code => {
-                            return prefix + code;
-                        })
-                    }
-                    codeBox.innerHTML = sortedCodes.join(", ");
-                    codeBox.style.display = "block"
-                    document.getElementById('copyButton').style.display = 'block';
-                    gear.classList.remove('spin');
-                    gear2.classList.remove('spin');
-                }
-            } else {
-                spin(false);
-            }
-        }
-
-        function addNewCode() {
-            let newCode = [],
-            lengthCodes = document.getElementById('codeLength').value,
-            intLengthCodes = parseInt(lengthCodes);
-
-            if (intLengthCodes > 0) {
-                for (let i = 0; i < intLengthCodes; i++) {
-                    let charIndex = Math.floor(Math.random() * chars.length),
-                    eachChar = chars[charIndex];
-                    newCode.push(eachChar);
-                }
-                let completeCode = newCode.join("");
-                naughtyWords.map((c, n) => {
-                    let substring = naughtyWords[n];
-                    if (completeCode.indexOf(substring) !== -1) {
-                        naughtyCount++;
-                        completeCode = shuffle(completeCode);
-                        //if there are still bad words after shuffling
-                        if (completeCode.indexOf(substring) !== -1) {
-                            completeCode = shuffle(completeCode);
-                            //if there are STILL bad words after shuffling (yes, it happens)
-                            if (completeCode.indexOf(substring) !== -1) {
-                                completeCode = shuffle(completeCode);
-                                //if still bad words, cut your losses and try again
-                                if (completeCode.indexOf(substring) !== -1) {
-                                    tooManyBadWords = true;
-                                    return null;
-                                }
-                            }
-                        }
-                    }
-                })
-                return completeCode;
-            } else {
-                return null;
-            }
-        }
-
-        function shuffle(badWord) {
-            let cleansedWord = badWord.split(""),
-                wordLength = cleansedWord.length;
-            
-            for (let t = wordLength -1; t > 0; t--) {
-                let randorder = Math.floor(Math.random() * (t + 1)),
-                tmp = cleansedWord[t];
-                cleansedWord[t] = cleansedWord[randorder];
-                cleansedWord[randorder] = tmp;
-            }
-            return cleansedWord.join("");
-        }
-
-        function reset() {
-            codes = [];
-            document.getElementById('codeLength').value = '';
-            document.getElementById('codeNumber').value = '';
-            document.getElementById('codePrefix').value = '';
-            document.getElementById('codeBox').innerHTML = '';
-            document.getElementById('codeBox').style.display = 'none';
-            document.getElementById('codeCount').innerHTML = '';
-            document.getElementById('dupeCount').innerHTML = '';
-            document.getElementById('naughtyCount').innerHTML = '';
-            document.getElementById('copyButton').style.display = 'none';
-            document.getElementById('countStatus').className = 'col-xs-1';
-            document.getElementById('dupeStatus').className = 'col-xs-1';
-            document.getElementById('naughtyStatus').className = 'col-xs-1';
-            dupes = 0;
-            naughtyCount = 0;
-            tooManyBadWords = false;
-        }
-
-        function copy() {
-            document.getElementById('codeBox').select();
-            document.execCommand('copy');
-        }
-     
-    </script>
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1 class="title">Promocode Generator 9000&#8482 v2.0.1</h1>
+                <h1 class="title">Promocode Generator 9000&#8482 v2.0.2</h1>
             </div>
         </div>
         <div class="row">
@@ -520,7 +42,7 @@
                 <button type="button" class="btn btn-success" onclick="spin(true)">Generate Codes</button>
             </div>
             <div class="col-sm-2">
-                <button type="button" class="btn btn-danger" onclick="reset()">Reset</button>
+                <button type="button" class="btn btn-danger" onclick="reset('full')">Reset</button>
             </div>
             <div class="col-sm-2" id="copyButton" style="display: none;">
                 <button type="button" class="btn btn-info" onclick="copy()">Copy codes</button>
@@ -553,7 +75,53 @@
             <div class="gear2-teeth spike1"></div>
             <div class="gear2-teeth spike2"></div>
         </div>
+        <div class="pipe">  
+            <div class="pipeAccents"></div>
+            <div class="pipeGlare"></div>
+        </div>
+        <div id="smoke">
+            <span class="s0"></span>
+            <span class="s1"></span>
+            <span class="s2"></span>
+            <span class="s3"></span>
+            <span class="s4"></span>
+            <span class="s5"></span>
+            <span class="s6"></span>
+            <span class="s7"></span>
+            <span class="s8"></span>
+            <span class="s9"></span>
+        </div>
     </div>
-    
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+    <div class="star star6"></div>
+    <div class="star star7"></div>
+    <div class="star star8"></div>
+    <div class="star star9"></div>
+    <div class="star star10"></div>
+    <div class="star star11"></div>
+    <div class="star star12"></div>
+    <div class="star star13"></div>
+    <div class="star star14"></div>
+    <div class="star star15"></div>
+    <div class="star star16"></div>
+    <div class="star star17"></div>
+    <div class="star star18"></div>
+    <div class="star star19"></div>
+    <div class="star star20"></div>
+    <div class="star star21"></div>
+    <div class="star star22"></div>
+    <div class="star star23"></div>
+    <div class="star star24"></div>
+    <div class="star star25"></div>
+    <div class="star star26"></div>
+    <div class="star star27"></div>
+    <div class="star star28"></div>
+    <div class="star star29"></div>
+    <div class="star star30"></div>
+    <script src="main.js"></script>
 </body>
 </html>
