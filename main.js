@@ -1,12 +1,11 @@
+const chars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+let codes = [];
+const naughtyWords = ['fuck', 'shit', 'bitch', 'damn', 'ass', 'hell', 'cunt', 'cum', 'tit', 'fat', 'fag', 'chub', 'dick', 'cock', 'slut', 'pee', 'poo', 'ugly', 'gay', 'anus', 'piss', 'butt', 'lard', 'ahole', 'anal', 'bltch', 'babe', 'balls', 'bang', 'barf', 'beer', 'beotch', 'bimbo', 'blow', 'boink', 'bone', 'boob', 'booty', 'booze', 'bung', 'c0ck', 'caca', 'chode', 'clit', 'coon', 'crap', 'dike', 'dildo', 'dong', 'dyke', 'erect', 'fart', 'felch', 'gook', 'gspot', 'gtfo', 'homo', 'jap', 'jiz', 'kike', 'lez', 'lube', 'meth', 'mofo', 'nad', 'nazi', 'oral', 'ovum', 'pedo', 'pimp', 'poon', 'puss', 'rape', 'scum', 'sex', 'spic', 'sperm', 'stfu', 'tard', 'suck', 'toke', 'turd', 'twat', 'vag', 'hag'];
+let dupes = 0;
+let naughtyCount = 0;
+let tooManyBadWords = false;
 
-chars = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-codes = [];
-naughtyWords = ['fuck', 'shit', 'bitch', 'damn', 'ass', 'hell', 'cunt', 'cum', 'tit', 'fat', 'fag', 'chub', 'dick', 'cock', 'slut', 'pee', 'poo', 'ugly', 'gay', 'anus', 'piss', 'butt', 'lard', 'ahole', 'anal', 'bltch', 'babe', 'balls', 'bang', 'barf', 'beer', 'beotch', 'bimbo', 'blow', 'boink', 'bone', 'boob', 'booty', 'booze', 'bung', 'c0ck', 'caca', 'chode', 'clit', 'coon', 'crap', 'dike', 'dildo', 'dong', 'dyke', 'erect', 'fart', 'felch', 'gook', 'gspot', 'gtfo', 'homo', 'jap', 'jiz', 'kike', 'lez', 'lube', 'meth', 'mofo', 'nad', 'nazi', 'oral', 'ovum', 'pedo', 'pimp', 'poon', 'puss', 'rape', 'scum', 'sex', 'spic', 'sperm', 'stfu', 'tard', 'suck', 'toke', 'turd', 'twat', 'vag', 'hag'];
-dupes = 0;
-naughtyCount = 0;
-tooManyBadWords = false;
-
-function spin(canContinue) {
+spin = (canContinue) => {
     if (codes.length >= 1) {
         reset('partial');
     }
@@ -24,7 +23,7 @@ function spin(canContinue) {
     }
 }
 
-function randomize() {
+randomize = () => {
     let gear = document.getElementById('gear'),
     gear2 = document.getElementById('gear2'),
     numCodes = document.getElementById('codeNumber').value,
@@ -96,7 +95,7 @@ function randomize() {
     }
 }
 
-function addNewCode() {
+addNewCode = () => {
     let newCode = [],
     lengthCodes = document.getElementById('codeLength').value,
     intLengthCodes = parseInt(lengthCodes);
@@ -134,7 +133,7 @@ function addNewCode() {
     }
 }
 
-function shuffle(badWord) {
+shuffle = (badWord) => {
     let cleansedWord = badWord.split(""),
         wordLength = cleansedWord.length;
     
@@ -147,7 +146,7 @@ function shuffle(badWord) {
     return cleansedWord.join("");
 }
 
-function reset(type) {
+reset = (type) => {
     codes = [];
     document.getElementById('codeBox').innerHTML = '';
     document.getElementById('codeBox').style.display = 'none';
@@ -169,7 +168,7 @@ function reset(type) {
     }
 }
 
-function copy() {
+copy = () => {
     document.getElementById('codeBox').select();
     document.execCommand('copy');
 }
